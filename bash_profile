@@ -7,7 +7,7 @@ curl -s https://crt.sh/?Identity=%.$1 | grep ">*.$1" | sed 's/<[/]*[TB][DR]>/\n/
 }
 
 crtshdirsearch(){ #gets all domains from crtsh, runs httprobe and then dir bruteforcers
-curl -s https://crt.sh/?q\=%.$1\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | httprobe -c 50 | grep https | xargs -n1 -I{} python3 ~/tools/dirsearch/dirsearch.py -u {} -e $2 -t 50 -b
+curl -s https://crt.sh/?q\=%.$1\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | httprobe -c 50 | grep https | xargs -n1 -I{} python3 /opt/dirsearch/dirsearch.py -u {} -e $2 -t 50 -b
 }
 
 certnmap(){
@@ -107,7 +107,9 @@ il() {
 if [ -z "$1" ]
 then
   echo "Sorry, target must be selected."
-  echo "Try: il <ip / target.txt> <command list.txt>"
+  echo "Usage: il <ip> <command list>"
+  echo "       il <domain name> <command list>"
+  echo "       il <targets list> <command list>"
   else
     if [[ "$1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]
     then
