@@ -18,6 +18,6 @@ My spin on the .bash_profile to help with enumeration
     * umountntfs  
     * il (Interlace)  
     
-### Things to add:  
+### Things to add/fix:  
 - Going to be adding more enumeration shortkeys with argument options.  
 - Better methods for determining what type of input has been provided.
