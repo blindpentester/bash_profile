@@ -9,12 +9,12 @@ My spin on the .bash_profile to help with enumeration
   
   
 ## Things added:  
-    * SMB enumeration to run smbclient a few ways and and SMBMap
-    * enum4linux-ng  
+    * smb (SMB enumeration to run smbclient a few ways and and SMBMap)  
+    * e4l (enum4linux-ng)  
     * pth (PassTheHash)  
-    * mntsmb  
+    * mntsmb (mounting remote smb share)  
     * umountsmb  
-    * mntntfs  
+    * mntntfs (mounting remote ntfs)  
     * umountntfs  
     * il (Interlace)  
     
