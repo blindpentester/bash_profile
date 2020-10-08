@@ -134,3 +134,13 @@ then
   fi
 fi
 }
+
+instashell() {
+# Run instashell from anywhere: Example:: instashell <option> <ip> <port>
+if [ -z "$1" ]
+then
+  python3 /opt/instashell/instashell.py --help
+else
+  python3 /opt/instashell/instashell.py $1 $2 $3
+ fi
+}
