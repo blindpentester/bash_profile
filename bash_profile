@@ -7,7 +7,7 @@ curl -s https://crt.sh/?Identity=%.$1 | grep ">*.$1" | sed 's/<[/]*[TB][DR]>/\n/
 }
 
 crtshdirsearch(){ #gets all domains from crtsh, runs httprobe and then dir bruteforcers
-curl -s https://crt.sh/?q\=%.$1\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | httprobe -c 50 | grep https | xargs -n1 -I{} python3 /opt/dirsearch/dirsearch.py -u {} -e $2 -t 50 -b
+curl -s https://crt.sh/?q\=%.$1\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | httprobe -c 50 | grep https | xargs -n1 -I{} python3 ~/tools/dirsearch/dirsearch.py -u {} -e $2 -t 50 -b
 }
 
 certnmap(){
@@ -108,13 +108,27 @@ if [ -z "$1" ]
 then
   echo "Sorry, target must be selected."
   echo "Try: il <ip / target.txt> <command list.txt>"
-else
-  if [[ "$1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]
-  then
-  echo "$1" > /tmp/hosts.txt
-  sudo interlace -tL /tmp/hosts.txt -cL $2
   else
-    sudo interlace -tL $1 -cL $2
+    if [[ "$1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]
+    then
+      echo "$1" > /tmp/hosts.txt
+      sudo interlace -tL /tmp/hosts.txt -cL $2
+      else
+        host $1 >/dev/null 2>&1
+        if [ $? -eq 0 ]
+        then
+          echo "Domain validated.."
+          sudo interlace -t $1 -cL $2
+          else
+            cat $1 >/dev/null 2>&1
+            if [ $? -eq 0 ]
+            then
+              echo "Using Tartets Text File..."
+              sudo interlace -tL $1 -cL $2
+              else
+                echo "You must be confused.  Target needs a list, ip or host name.  Try again"
+      fi
+    fi
   fi
 fi
 }
