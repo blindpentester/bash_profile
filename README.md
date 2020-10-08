@@ -5,7 +5,8 @@ My spin on the .bash_profile to help with enumeration
     sudo git clone https://github.com/blindpentester/bash_profile
     cd bash_profile  
     cat bash_profile >> ~/.bash_profile  
-    source ~/.bash_profile
+    source ~/.bash_profile  
+    echo "source ~/.bash_profile" >> ~/.bashrc
   
   
 ## Things added:  
