@@ -17,6 +17,7 @@ My spin on the .bash_profile to help with enumeration
     * mntntfs (mounting remote ntfs)  
     * umountntfs  
     * il (Interlace - added checks to make sure input is either domain name, ip address or a list, otherwise command fails)  
+    * instashell (instashell is included in the-essentials repo)
     
 ### Things to add/fix:  
 - Going to be adding more enumeration shortkeys with argument options.  
