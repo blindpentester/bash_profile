@@ -16,8 +16,7 @@ My spin on the .bash_profile to help with enumeration
     * umountsmb  
     * mntntfs (mounting remote ntfs)  
     * umountntfs  
-    * il (Interlace)  
+    * il (Interlace - added checks to make sure input is either domain name, ip address or a list, otherwise command fails)  
     
 ### Things to add/fix:  
 - Going to be adding more enumeration shortkeys with argument options.  
-- Better methods for determining what type of input has been provided.
