@@ -145,9 +145,6 @@ else
  fi
 }
 
-asn() {
-python3 /opt/asnlookup/asnlookup.py
-}
 
 spoofcheck() {
 
