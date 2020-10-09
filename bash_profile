@@ -144,3 +144,34 @@ else
   python3 /opt/instashell/instashell.py $1 $2 $3
  fi
 }
+
+asn() {
+python3 /opt/asnlookup/asnlookup.py
+}
+
+spoofcheck() {
+
+python /opt/spoofcheck/spoofcheck.py $1
+
+}
+
+
+autoenum() {
+
+cd /opt/autoenum
+sudo ./autoenum
+
+}
+
+
+sherlock(){
+
+sudo python3 /opt/sherlock/sherlock/sherlock.py $1
+
+}
+
+dnsdumpster() {
+
+sudo python3 /opt/dnsdumpster/dnsdumpster.py -d $1
+
+}
