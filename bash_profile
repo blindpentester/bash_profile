@@ -189,3 +189,8 @@ dnsdumpster() {
 sudo python3 /opt/dnsdumpster/dnsdumpster.py -d $1
 
 }
+
+bloodhnd() {
+terminator -T "neo4j" -e "sudo neo4j console"
+sudo bloodhound &
+}
