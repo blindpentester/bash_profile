@@ -159,7 +159,7 @@ python /opt/spoofcheck/spoofcheck.py $1
 autoenum() {
 
 cd /opt/autoenum
-sudo ./autoenum
+sudo ./autoenum.sh
 
 }
 
