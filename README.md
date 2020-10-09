@@ -25,6 +25,7 @@ My spin on the .bash_profile to help with enumeration
     * spoofcheck (runs from /opt subfolder)  
     * sherlock (runs from /opt subfolder)  
     * dnsdumpster (runs from /opt subfolder)  
+    * bloodhnd (lauches another terminal window for neo4j and starts bloodhound)  
     
     
 ### Things to add/fix:  
