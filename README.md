@@ -26,6 +26,7 @@ My spin on the .bash_profile to help with enumeration
     * sherlock (runs from /opt subfolder)  
     * dnsdumpster (runs from /opt subfolder)  
     * bloodhnd (lauches another terminal window for neo4j and starts bloodhound)  
+    * phprev (phprev <port> modifies php-reverse-shell.php to use tun0 and port specified and outputs to Desktop)
     
     
 ### Things to add/fix:  
