@@ -20,7 +20,7 @@ My spin on the .bash_profile to help with enumeration
     * il (Interlace - added checks to make sure input is either domain name, ip address or a list, 
       otherwise command fails)  
     * instashell (instashell is included in the-essentials repo)  
-    * ans (anslookup runs from /opt subfolder)  
+    * asn (asnlookup runs from /opt subfolder)  
     * autoenum (cd's into dir and runs from there since dependencies are not full path)  
     * spoofcheck (runs from /opt subfolder)  
     * sherlock (runs from /opt subfolder)  
