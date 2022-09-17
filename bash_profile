@@ -152,13 +152,18 @@ fi
 
 instashell() {
 # Run instashell from anywhere: Example:: instashell <option> <ip> <port>
-if [ -z "$1" ]
+if [ -z "$1" ] || [ -z "$2" ]
 then
+echo "Missing information."
+echo "Example: 'instashell <option> <IP> <Port>'"
+echo "Example: 'instashell -nc 10.0.2.15 9001'"
+echo "Example: 'instashell -php 10.0.2.15 9001'"
   python3 /opt/instashell/instashell.py --help
 else
   python3 /opt/instashell/instashell.py $1 $2 $3
  fi
 }
+
 
 asn() {
 python3 /opt/asnlookup/asnlookup.py
