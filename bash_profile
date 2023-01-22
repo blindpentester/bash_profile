@@ -262,3 +262,16 @@ echo -e "$filetop\n\$ip = '$ipaddy';\n\$port = '$1'; \n$filebottom" > revshell.p
 ciphey(){                                                                              
 docker run -it --rm remnux/ciphey "${@:2}"
 }
+
+
+ipinfo(){
+ if [ -z "$1" ]
+then
+ echo "Usage for this is pretty simple."
+ echo "Example: ipinfo <IPADDRESS>"
+else
+ curl ipinfo.io/$1
+fi
+ }
+ 
+ 
