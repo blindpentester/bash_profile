@@ -28,6 +28,8 @@ My spin on the .bash_profile to help with enumeration
 * phprev (phprev <port> generates its own php-reverse-shell.php to use tun0 and port specified and outputs to whatever directory you are currently in)
 * ciphey added.
   * since ciphey does not like the python i use, i am having this run through docker.  it ony captures and uses the second input put in, so it should not beother with the flags you are attempting to use.
+* ipinfo  
+  * typing "ipinfo <IP ADDY>" will do a curl and provide output from ipinfo.io
     
     
 ### Things to add/fix:  
